@@ -2,12 +2,10 @@ lolccats
 ========
 
 Mike
+Adam is above chris
 Chris is #1
-Adam
 Patrick
 Jen?
-
-
 
 ====================
 Android Game Project
