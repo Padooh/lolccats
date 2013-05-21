@@ -1,0 +1,205 @@
+Git Notes
+Git is a distributed version control system. Each
+local working copy is a full fledged repository
+with history. This does not necessarily require a
+master server to which changes are committed and
+from which repositories are checked out.
+
+
+==============
+Git Website (good resource)
+
+http://git-scm.com/book
+
+Good read for getting started.	
+
+
+==============
+Configuration
+
+git config => for options
+Creates file in home directory called .gitconfig. Options set below will be added
+to the .gitconfig file.
+
+Name and email:
+git config --global user.name "Mike"
+git config --global user.email "email@email.com"
+
+Color options:
+git config --global color.diff auto => colorful diffs
+git config --global color.status auto
+git config --global color.status branch
+git config --global color.ui auto (or true)
+
+
+==============
+Create Project Folder
+
+mkdir project
+cd project
+
+==============
+Initialize Git
+
+git init
+Initializes current directory for Git repository.
+
+git status
+Tells you current state of working repository.
+
+git add <filename>
+Adds file to version control.
+
+==============
+Committing
+
+git commit
+Commits changes to your local repository.
+Will pop into text editor, where you enter the comment.
+Note: In subversion, each revision/repo is represented by a number.
+Git works on the commit; each commit gets a SHA1 hash. SHA1 hash
+guarantees the content of the repository. Git promises what we put
+into the repository is what we get out. Usually, specific commits
+can be indicated by first 8 characters.
+Note2: Commits are local. They exist in our local repository.
+
+Committing / Staging Area
+You can change a file and Git will know it has been changed. If you try
+to commit, it will say there are no changes to commit. This is because
+of the staging area workflow within Git. You must tell Git to stage a file
+or files to commit.
+
+git add
+This is also used to add files to the staging area.
+
+git reset
+Removes files or specific file from staging area.
+
+git commit -a
+Commits all changes in working copy, even ones that haven't
+been staged.
+
+git reset --hard
+Reverts the changes that have been made to the file. Reverts
+to latest committed version.
+
+git reset --hard <revision ID>
+Reverts to specific revision ID
+
+git log
+Shows history.
+
+.gitignore
+Can create .gitignore file which lists files to ignore.
+Can use regular expressions.
+Ignore file must be added and committed.
+
+==============
+Pushing and Fetching
+
+Remember, git commits exist in our local repository. To get
+changes into a server, we need to use push. Local commits
+allow us to make a lot of small changes and push when we're
+ready.
+
+Push
+-create a remote repo
+-tell git about remote
+-git push
+
+Fetch
+-git fetch <remote_name> => get changes from remote
+-git rebase <remote_name> => applies changes to working copy
+
+git init --bare
+Create a bare repository. Used for remotes. Remotes are
+repositories that can be pushed to and fetched from. 
+(similar to the role servers place in subversion)
+
+git remote add <remote_name> <remote_path>
+Adds a remote repository so that local working directory
+can push changes to it.
+
+git push <remote_name> <branch_name>
+Push local repository changes to remote. Objects
+are compressed to conserver bandwidth. <branch_name>
+only has to be specified once.
+
+==============
+Pushing and Fetching Central Server Model
+
+Central Server Model
+-Each dev has a local repository
+-Push changes to the server
+-Fetch changes from the server
+
+Access to server
+-webdev
+-git:// (git's own protocol)
+-ssh
+
+git init --bare --shared
+Create a bare repository to be used as remote.
+Shared indicates multiple devs are working with
+this remote. If shared was omitted, file permissions
+would be messed up.
+
+git remote add origin user@host:/path/to/remote
+Add a remote from a different server.
+
+git push origin master
+Will be prompted for password.
+
+git fetch <remote_name>
+Updates the local revision. Does not modify working copy
+files.
+
+git rebase <branch_name>
+Updates working copy files to match local revision.
+
+==============
+Logging and Tracing
+
+git log
+Shows log of commits with author and date.
+
+git reflog
+Shows log message and commit ID.
+
+get show
+Shows last commit with diff changes.
+
+gitk
+Gui revision tracking.
+
+==============
+Branching and Merging
+
+git branch
+Shows local branches.
+
+git branch -a
+Shows all branches.
+
+git checkout -b newfeature
+Creates and switches to new branch "newfeature".
+Note this does not duplicate the project files and folders.
+
+git push original <newfeature>
+Creates remote repository for <newfeature> branch.
+
+git checkout master
+Switch to master branch. Use checkout to switch branches.
+
+git merge <branch_name>
+Merges specified branch into current branch.
+
+git branch -d <branch_name>
+Delete specified branch.
+Note: You must push your branch delete if you want to delete
+the corresponding remote branch.
+
+==============
+==============
+
+
