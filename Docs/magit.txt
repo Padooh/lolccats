@@ -1,3 +1,1 @@
 http://www.emacswiki.org/emacs/Magit
-
-# nevermind, I don't know how to get this work. Instead I reinstalled git to allow for use in the windows command prompt. This lets me used the git command from instead emacs.
